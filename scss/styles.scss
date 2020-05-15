@@ -1,0 +1,405 @@
+@import 'normalize';
+@import 'variables';
+@import 'mixins';
+@import 'header';
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;  
+}
+
+body {
+    @include font($body-ff, 1.6rem, $body-color, $lh: 1.6);
+    padding: 0;
+    margin: 0;
+    background-color: $body-bg;
+}
+
+.section {
+    overflow: hidden;
+    position: relative;   
+    &--bg{
+        @include bg;
+        padding: 110px 0px;
+    }
+    &--features{
+       background-color: $grey-color;
+       background-position:48% 25%;
+       background-repeat: no-repeat;
+       padding: 80px 0px;
+    }
+    &--full-screen{
+        min-height: 100vh;
+    }
+    &__title{
+        text-align: center;
+        padding: 0 50px 50px 50px;
+    }
+}
+
+.header{
+    min-height: 100vh;
+    padding: 110px 0px;
+    &__content {
+        text-align: center;
+        @include flex ($align-items: center, $justify-content: center);
+        flex-direction: column;
+        position: relative;
+        padding:70px 0;
+    }
+    &__logo {
+        text-transform: uppercase;
+    }
+    &__subtitle{
+        @include font($body-ff, 2.2rem, $body-color, 400, $lh: 1.2);
+        letter-spacing: .28em;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        @include clamp($line-clamp: 1);
+    }
+    &__form{
+        margin: 20px 10px 110px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%;
+    }
+    &__link {
+        @include posA ($top: null, $left: 50%, $delta_y: 0);
+        padding: 10px;
+        bottom: 35px;
+        @include flex ($align-items: center, $justify-content: center);
+        flex-direction: column;
+        text-decoration: none;
+        @include font ($body-ff, 1.4rem, $body-color, 400, $lh: 1.8);
+        text-transform: capitalize;
+        letter-spacing: .2em;
+        // max-width: 790px;
+        // width: 100%;
+        @include tr;
+        @include hover {
+        // transform: scale(1.3) translate(-50%, 0); 
+        background-color: rgba($primary-color, .5);
+        border-radius: 50%;
+  
+        @include tr;
+        }
+        &__icon{
+            display: block;
+            margin-top: 10px;
+            fill: $body-color;
+        }
+    }
+}
+
+.container {
+    outline: 1px solid red;
+    margin: 0 auto;
+    max-width: 1140px;
+    // padding: 10px;
+    // overflow: hidden;
+    &--menu{
+    @include flex ($align-items: center, $justify-content: space-between);
+    margin-top: auto;
+    padding: 20px 0;
+    }
+}
+
+.btn{
+    display: inline-block;
+    background-color: rgba($primary-color, .8);
+    border: $border-width solid rgba($primary-color, .8);
+    @include font($btn-ff, 1.4rem, $body-color, 400, $lh: 1.8);
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: .1em;
+    padding: 15px 40px;
+    text-align: center;
+    white-space: nowrap;
+    outline: none;
+    margin: auto;
+    cursor: pointer;
+    
+    @include tr;
+    @include hover {
+        background-color: rgba($primary-color, 1);
+        border-color: $body-color;
+        transform: scale(.9) ;  
+        @include tr;
+    }   
+}
+
+.form{
+    padding: 0 10px;
+    &__field{
+        flex: 1 1 auto;
+        border: $border-width solid $body-color;
+        padding: 18px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        resize: none;
+        @include tr;
+        &::placeholder {
+            @include font($body-ff, 1.4rem, $medium-grey, 400, $lh: 1.8);
+            letter-spacing: .2em;
+            text-align: center;
+        }
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            @include tr;
+        }
+        &:focus::placeholder {
+            opacity: 0;
+            @include tr;
+        }
+        &:not(:focus):invalid {
+            border-color: rgba($body-color, 0);
+        }
+        &:invalid {
+            border-color: $icon-color;
+        }
+    }
+    &__btn{
+        // flex: 0 1 auto;
+        background-color: rgba($primary-color, 1);
+        border: $border-width solid $body-color;
+        @include clamp($line-clamp: 1);
+        &__icon{
+            vertical-align: middle;
+            display: inline-block;
+            fill: $body-color;
+            margin-left: .5em;   
+        }
+        @include tr;
+        @include hover {
+        border-color: $primary-color;
+        transform: scale(1) ;  
+        @include tr;
+        }
+    }
+}
+
+h1{
+    @include font($body-ff, 4.8rem, $body-color, 700, $lh: 1.3);
+    letter-spacing: .1em;
+    margin-bottom: 0;
+}
+
+h2{
+    @include font($title-ff, 3.6rem, $body-color, 400);
+    text-transform: capitalize;
+}
+
+h3{
+    @include font($body-ff, 2rem, $body-color, 400, $lh: 1.3);
+    text-transform: uppercase;
+}
+
+.nav{
+    @include posA($top: null, $left: 50%, $delta-y: 0);
+    bottom: 0;
+    background-color: $primary-color;
+    width: 100%;
+  
+    &__logo{
+        text-decoration: none;
+        @include font($logo-ff, 2.4rem, $body-color, 700, $lh: 1.8);
+        letter-spacing: .1em;
+        @include tr;
+        @include hover {
+        transform: scale(.8) ;  
+        @include tr;
+        }
+    }
+}
+
+.menu{
+    display: inline-block;
+    margin: 0;
+    list-style: none;
+    &__item{
+        display: inline-block;
+        &:not(:last-child){
+            margin-right: 3em;
+        }
+        @include tr;
+        @include hover {
+        transform: scale(.8);  
+        @include tr;
+        }
+    }
+    &__link{
+        text-decoration: none;
+        @include font($btn-ff, 1.4rem, $body-color, 400, $lh: 1.6);
+        text-transform: uppercase;
+    }
+}
+
+.row {
+    @include flex ($align-items: center, $justify-content: space-between);
+    // flex-wrap: nowrap;   
+}
+
+.col {
+    outline: 1px solid blue; 
+    width: 100%;
+    &--1-2{
+        max-width: 540px;      
+    }
+}
+
+.text{
+    &__info{
+        letter-spacing: .1em;
+        color: $light-grey;
+        &--nospace{
+            letter-spacing: 0;
+            margin-bottom: 10px;
+        }
+    }
+    &__btn{
+    margin-top: 40px;
+    }
+    &--wrap{
+        background-color: rgba($secondary-color, .9);
+        max-width:540px;
+        padding: 50px 30px;
+    }
+    &__sign{
+        text-transform: capitalize;
+        @include font($body-ff, 2rem, $body-color, 400, $lh: 1.3);
+        letter-spacing: .075em;
+    }  
+}
+
+.left{
+    @include flex ($justify-content: flex-start);
+    margin-bottom: 5px;
+}
+.right{
+    @include flex ($justify-content: flex-end);
+}
+
+.img__wrap {
+    background-color: $secondary-color;
+    position: relative;
+    width: 60%;
+    padding-top: 40%;
+    overflow: hidden;  
+    &--review{
+        width: 45%;
+        padding-top: 20%;
+    }
+}
+
+.img{
+    min-width: 100%;
+    min-height: 100%;
+    @include posA;
+
+}
+
+.features {
+    @include flex ($align-items: center, $justify-content: space-around);
+    flex-wrap: wrap;
+}
+.feature {
+    text-align: center;
+    margin: 35px;
+    background-color: $grey-color;
+    &__img {
+        margin-bottom: 18px;
+        &--places {
+            fill: $primary-color;
+        }
+        &--select {
+            fill: $icon-color;
+        }
+        &--book {
+            fill: $blue-icon-color;
+        }
+    }
+    &__name {
+        margin-top: 18px;
+    }
+}
+
+.review{
+    @include flex ($align-items: null, $justify-content: space-between);
+    margin: 20px 0;
+    &__content {
+        padding: 50px;
+        width: 65%;
+        background-color: $grey-color;
+    }
+    &__author {
+        @include font($body-ff, 2rem, $body-color, 400, $lh: 1);
+        text-transform: uppercase;
+        font-style: normal;
+    }
+    &__text {
+        margin-left: 0;
+        &:not(:empty):before{
+            content: '“ ';
+            @include font($bloquote, 6rem, $primary-color, 700, $lh: 1);
+
+        }
+    } 
+}
+
+.footer{
+    // text-align: center;
+    background-color: $secondary-color;
+    padding: 80px 0 60px;
+    &__title {
+        text-align: center;
+        @include flex ($align-items: center, $justify-content: center);
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    &__logo {
+        text-decoration: none;
+        letter-spacing: .15em;
+        @include font($logo-ff, 2.4rem, $body-color, 700, $lh: 1);
+        text-transform: uppercase;
+        margin-bottom: .4em;
+        @include tr; 
+        @include hover{
+            color: $primary-color;
+        }
+    }
+    &__text {
+        @include font($body-ff, 1.6rem, $body-color, 400, $lh: 1.6);
+        letter-spacing: .07em;
+        text-transform: capitalize;
+        @include clamp($line-clamp: 1);
+    }
+}
+.social {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    &__item {
+        display: inline-block;
+        margin: 10px;
+    }
+    &__link {
+        color: $body-color;
+        text-decoration: none;
+        font-size: 1.4em;
+        width: $social-size;
+        height: $social-size;
+        display: inline-block;
+        @include tr; 
+        @include hover{
+            color: $primary-color;
+        }
+    }
+}
+
+
