@@ -26,6 +26,9 @@ body {
     &--bg{
         @include bg;
         padding: 110px 0px;
+        @media screen and (max-width: 768px) {
+            padding: 70px 0px;
+        }
     }
     &--features{
        background-color: $grey-color;
@@ -52,7 +55,7 @@ body {
         position: relative;
         padding:70px 0;
         @media screen and (max-width: 414px) {
-            padding:40px 0; 
+            padding:50px 0; 
         } 
     }
     &__title{
@@ -121,6 +124,10 @@ body {
     @include flex ($align-items: center, $justify-content: space-between);
     margin-top: auto;
     padding: 20px 0;
+    @media screen and (max-width: 1100px){
+        padding: 0;
+    }
+
     }
 }
 
@@ -263,6 +270,9 @@ h3{
         display: inline-block;
         &:not(:last-child){
             margin-right: 3em;
+            @media screen and (max-width: 1021px){
+                margin-right: 0;
+            }
         }
         @include tr;
         @include hover {
@@ -276,6 +286,14 @@ h3{
         text-transform: uppercase;
         @media screen and (max-width: 1021px){
             @include font($btn-ff, 2.5rem, $body-color, 400, $lh: 1.6);
+            padding: .25em 0;
+            display: inline-block;
+            @include hover {
+                color: rgba($body-color, .8);
+                }
+                .dropdown & {
+                    padding: 1em;
+                    }
         }
     }
 }
@@ -362,6 +380,7 @@ h3{
 .features {
     @include flex ($align-items: center, $justify-content: space-around);
     flex-wrap: wrap;
+    
 }
 .feature {
     text-align: center;
